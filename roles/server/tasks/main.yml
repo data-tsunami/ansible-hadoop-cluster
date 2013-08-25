@@ -35,3 +35,9 @@
      - { re: 'https_proxy', line: 'https_proxy = http://proxy.fx8120.hgdeoro.com.ar:3128' }
      - { re: 'ftp_proxy',   line: 'ftp_proxy = http://proxy.fx8120.hgdeoro.com.ar:3128' }
      - { re: 'use_proxy',   line: 'use_proxy = on' }
+
+- name: Create Hadoop group
+  group: name=hadoop gid=599 state=present
+
+- name: Create Hadoop user
+  user: name=hadoop comment="User for Hadoop services" uid=599 group=hadoop state=present
