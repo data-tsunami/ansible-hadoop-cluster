@@ -1,5 +1,23 @@
 ---
-- name: Check
-  debug: "Check"
-  tags: check
+- name: YUM - disable fastestmirror plugin
+  ini_file: dest=/etc/yum/pluginconf.d/fastestmirror.conf section=main option=enabled value=0
+  tags: yum
+
+- name: Use specific YUM mirror
+  template: src={{ansible_distribution}}-{{ansible_distribution_version}}--CentOS-Base.repo dest=/etc/yum.repos.d/CentOS-Base.repo
+  tags: yum
+
+- name: Install basic packages
+  yum: name={{ item }} state=installed
+  with_items:
+     - vim-enhanced
+     - openssh-clients
+     - cifs-utils
+     - git
+     - nfs-utils
+     - portmap
+#     - tcpdump
+#     - nmap
+#     - screen
+  tags: yum
 
