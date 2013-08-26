@@ -27,6 +27,7 @@
 
 - name: Setup proxy via env variables
   template: src=etc--profile.d--proxy.sh dest=/etc/profile.d/proxy.sh
+  tags: proxy
 
 - name: Setup proxy on wgetrc
   lineinfile: dest=/etc/wgetrc regexp="^{{item.re}}"  line="{{item.line}}"
@@ -35,6 +36,7 @@
      - { re: 'https_proxy', line: 'https_proxy = http://proxy.fx8120.hgdeoro.com.ar:3128' }
      - { re: 'ftp_proxy',   line: 'ftp_proxy = http://proxy.fx8120.hgdeoro.com.ar:3128' }
      - { re: 'use_proxy',   line: 'use_proxy = on' }
+  tags: proxy
 
 - name: Create Hadoop group
   group: name=hadoop gid=599 state=present
@@ -42,11 +44,21 @@
 - name: Create Hadoop user
   user: name=hadoop comment="User for Hadoop services" uid=599 group=hadoop state=present
 
-
 - name: Setup ssh keys
   authorized_key: user="{{item}}" key="{{lookup('file', 'local/authorized_key.txt' )}}"
   with_items:
      - root
      - horacio
      - hadoop
+  tags: ssh
+
+- name: Create directories
+  file: path={{item}} owner=hadoop group=hadoop mode=0755 state=directory
+  with_items:
+     - /srv/nfs
+     - /srv/hadoop/hdfs
+     - /srv/hadoop/data
+     - /srv/hadoop/secondary-namenode-checkpoint
+     - /srv/hadoop/mapred/local
+     - /srv/hadoop/mapred/system
 
