@@ -92,6 +92,10 @@
   template: src=mapred-site.xml dest=/home/hadoop/hadoop-1.2.0/conf/mapred-site.xml
   tags: hadoop
 
+- name: Configure Hadoop CORE
+  template: src=core-site.xml dest=/home/hadoop/hadoop-1.2.0/conf/core-site.xml
+  tags: hadoop
+
 - name: Configure Hadoop environment
   lineinfile: dest=/home/hadoop/hadoop-1.2.0/conf/hadoop-env.sh regexp="^{{item.re}}"  line="{{item.line}}"
   with_items:
