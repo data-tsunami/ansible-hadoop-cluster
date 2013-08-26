@@ -1,7 +1,10 @@
 Ansible playbook for my Hadoop cluster
 --------------------------------------
 
-Install Hadoop in CentOS 6.4 server.
+Setup a Hadoop cluster on CentOS 6.4 servers.
+
+There are a lot of hardcoded stuff, but I share this
+as an exampe of what Andible can do (and how to do it).
 
 ## Already done
 
@@ -9,11 +12,18 @@ Install Hadoop in CentOS 6.4 server.
 - set YUM mirror and proxy
 - disable YUM 
 
+### Pending tasks
+
+- install Hadoop
+- setup Hadoop
+
 ### TODO
 
-- initial setup of ssh keys and sudo
+- remove all the hardcoded values (see next items)
 - parametrization of ssh user to connect
 - parametrization of proxy and YUM mirror
+- initial setup of ssh keys and sudo
+- add example 'hosts' for Ansible
 
 # Some notes
 
