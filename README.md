@@ -6,6 +6,9 @@ Setup a Hadoop cluster on CentOS 6.4 servers.
 There are a lot of hardcoded stuff, but I share this
 as an exampe of what Andible can do (and how to do it).
 
+Requires a working http proxy (like Squid) to speedup installs,
+and a exported NFS, to centralize Hadoops logs.
+
 ## Already done
 
 - works against CentOS 6.4
