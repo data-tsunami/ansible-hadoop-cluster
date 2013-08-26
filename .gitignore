@@ -1,1 +1,2 @@
 /virtualenv
+/roles/server/files/local/authorized_key.txt

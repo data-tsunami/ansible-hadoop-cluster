@@ -41,3 +41,12 @@
 
 - name: Create Hadoop user
   user: name=hadoop comment="User for Hadoop services" uid=599 group=hadoop state=present
+
+
+- name: Setup ssh keys
+  authorized_key: user="{{item}}" key="{{lookup('file', 'local/authorized_key.txt' )}}"
+  with_items:
+     - root
+     - horacio
+     - hadoop
+
