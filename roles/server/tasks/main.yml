@@ -79,3 +79,8 @@
      - http://nfs.fx8120.hgdeoro.com.ar/nfs/ro/jdk/sun-javadb-javadoc-10.6.2-1.1.i386.rpm
      - http://nfs.fx8120.hgdeoro.com.ar/nfs/ro/jdk/jdk-6u31-linux-amd64.rpm
   tags: jdk
+
+- name: Unzip Hadoop
+  shell: wget -O - http://nfs.fx8120.hgdeoro.com.ar/nfs/ro/hadoop/hadoop-1.2.0-bin.tar.gz | tar xzf - -C /home/hadoop creates=/home/hadoop/hadoop-1.2.0
+  tags: hadoop
+
