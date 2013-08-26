@@ -67,3 +67,15 @@
 
 - name: Register EPEL repository
   yum: name=http://epel.mirror.mendoza-conicet.gob.ar/6/i386/epel-release-6-8.noarch.rpm state=present
+
+- name: Install Java
+  yum: name="{{item}}" state=present
+  with_items:
+     - http://nfs.fx8120.hgdeoro.com.ar/nfs/ro/jdk/sun-javadb-common-10.6.2-1.1.i386.rpm
+     - http://nfs.fx8120.hgdeoro.com.ar/nfs/ro/jdk/sun-javadb-client-10.6.2-1.1.i386.rpm
+     - http://nfs.fx8120.hgdeoro.com.ar/nfs/ro/jdk/sun-javadb-core-10.6.2-1.1.i386.rpm
+     - http://nfs.fx8120.hgdeoro.com.ar/nfs/ro/jdk/sun-javadb-demo-10.6.2-1.1.i386.rpm
+     - http://nfs.fx8120.hgdeoro.com.ar/nfs/ro/jdk/sun-javadb-docs-10.6.2-1.1.i386.rpm
+     - http://nfs.fx8120.hgdeoro.com.ar/nfs/ro/jdk/sun-javadb-javadoc-10.6.2-1.1.i386.rpm
+     - http://nfs.fx8120.hgdeoro.com.ar/nfs/ro/jdk/jdk-6u31-linux-amd64.rpm
+  tags: jdk
