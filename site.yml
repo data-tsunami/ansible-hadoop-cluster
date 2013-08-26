@@ -2,7 +2,6 @@
 
 - name: Hadoop master node setup
   hosts: master
-  user: horacio
   sudo: true
 
   roles:
@@ -11,7 +10,6 @@
 
 - name: Hadoop slave nodes setup
   hosts: slave
-  user: horacio
   sudo: true
 
   roles:
