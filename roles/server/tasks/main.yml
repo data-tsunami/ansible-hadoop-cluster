@@ -86,12 +86,17 @@
 
 - name: Configure Hadoop HDFS
   template: src=hdfs-site.xml dest=/home/hadoop/hadoop-1.2.0/conf/hdfs-site.xml
+  tags: hadoop
+
+- name: Configure Hadoop MAPRED
+  template: src=mapred-site.xml dest=/home/hadoop/hadoop-1.2.0/conf/mapred-site.xml
+  tags: hadoop
 
 - name: Configure Hadoop environment
   lineinfile: dest=/home/hadoop/hadoop-1.2.0/conf/hadoop-env.sh regexp="^{{item.re}}"  line="{{item.line}}"
   with_items:
-     - { re: 'export JAVA_HOME=',  line: 'export JAVA_HOME=/usr/java/jdk1.6.0_31' }
-     - { re: 'export HADOOP_HEAPSIZE=',  line: 'export HADOOP_HEAPSIZE=512' }
-     - { re: 'export HADOOP_SSH_OPTS=',  line: 'export HADOOP_SSH_OPTS="-o ConnectTimeout=5 -o SendEnv=HADOOP_CONF_DIR -o StrictHostKeyChecking=no"' }
+     - { re: 'export JAVA_HOME=',       line: 'export JAVA_HOME=/usr/java/jdk1.6.0_31' }
+     - { re: 'export HADOOP_HEAPSIZE=', line: 'export HADOOP_HEAPSIZE=512' }
+     - { re: 'export HADOOP_SSH_OPTS=', line: 'export HADOOP_SSH_OPTS=\"-o ConnectTimeout=5 -o SendEnv=HADOOP_CONF_DIR -o StrictHostKeyChecking=no\"' }
      - { re: 'export HADOOP_LOG_DIR=',  line: 'export HADOOP_LOG_DIR=/srv/nfs/hadoop-1.2.0-logs' }
-
+  tags: hadoop
