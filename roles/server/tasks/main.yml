@@ -62,3 +62,6 @@
      - /srv/hadoop/mapred/local
      - /srv/hadoop/mapred/system
 
+- name: Setup fstab
+  mount: name=/srv/nfs src=nfs.fx8120.hgdeoro.com.ar:/srv/nfs fstype=nfs4 opts=rw state=mounted
+
