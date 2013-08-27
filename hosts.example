@@ -1,0 +1,8 @@
+[master]
+master.my.domain
+
+[slave]
+slave1.my.domain
+slave2.my.domain
+slave3.my.domain
+slave4.my.domain
