@@ -44,12 +44,24 @@
 - name: Create Hadoop user
   user: name=hadoop comment="User for Hadoop services" uid=599 group=hadoop state=present
 
-- name: Setup ssh keys
+- name: Setup ssh authorized_key
   authorized_key: user="{{item}}" key="{{lookup('file', 'local/authorized_key.txt' )}}"
   with_items:
      - root
      - horacio
      - hadoop
+  tags: ssh
+
+- name: Setup ssh keys
+  copy: src=local/{{item.f}} dest=~/.ssh/{{item.f}} owner={{item.u}} group={{item.u}} mode=0600
+  with_items:
+    - { u: 'root', f: 'id_rsa_hadoop' }
+    - { u: 'root', f: 'id_rsa_hadoop.pub' }
+    - { u: 'hadoop', f: 'id_rsa_hadoop' }
+    - { u: 'hadoop', f: 'id_rsa_hadoop.pub' }
+    - { u: 'horacio', f: 'id_rsa_hadoop' }
+    - { u: 'horacio', f: 'id_rsa_hadoop.pub' }
+
   tags: ssh
 
 - name: Create directories
