@@ -1,0 +1,11 @@
+---
+
+- name: Start Hadoop cluster
+  hosts: master
+  sudo: true
+  sudo_user: hadoop
+  gather_facts: no
+  vars_files:
+    - local.yml
+  tasks:
+    - command: /home/hadoop/{{ hadoop_unzip_dir }}/bin/start-all.sh
