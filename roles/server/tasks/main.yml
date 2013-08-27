@@ -102,8 +102,8 @@
      - hdfs-site.xml
      - mapred-site.xml
      - core-site.xml
-     - masters
-     - slaves
+     - masters # this file contains the name or IP of the secondary name node
+     - slaves  # this file contains the names or IPs of the slaves nodes
   tags: hadoop
 
 - name: Configure Hadoop environment

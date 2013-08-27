@@ -7,7 +7,7 @@
  
   <property>
     <name>mapred.job.tracker</name>
-    <value>jobtracker.fx8120.hgdeoro.com.ar:9000</value>
+    <value>{{ hadoop_jobtracker }}:9000</value>
     <final>true</final>
   </property>
 

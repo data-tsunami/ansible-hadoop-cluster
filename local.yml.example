@@ -1,3 +1,6 @@
 ---
 proxy: http://proxy.my.domain:3128
 yum_mirror: http://centos.xfree.com.ar/6.4
+hadoop_namenode: nn.my.domain
+hadoop_secondarynamenode: secnn.my.domain
+hadoop_jobtracker: jt.my.domain
