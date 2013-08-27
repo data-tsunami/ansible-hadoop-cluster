@@ -8,7 +8,9 @@ as an exampe of what Andible can do (and how to do it).
 
 Requires a working http proxy (like Squid) to speedup installs,
 and a exported NFS, to centralize Hadoops logs, and some binaries
-downloables from an HTTP server (JDK, Hadoop).
+downloables from an HTTP server (JDK RPMs and Hadoop .tgz).
+
+The customizations are loaded from local.yml (see local.yml.example)
 
 ## Already done
 
