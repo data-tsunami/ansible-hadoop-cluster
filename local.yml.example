@@ -7,3 +7,6 @@ yum_mirror: http://centos.xfree.com.ar/6.4
 hadoop_namenode: nn.my.domain
 hadoop_secondarynamenode: secnn.my.domain
 hadoop_jobtracker: jt.my.domain
+hadoop_version: 1.2.0 # used to create the directory for logs: /srv/nfs/hadoop-{{hadoop_version}}-logs
+hadoop_tgz: hadoop-1.2.0-bin.tar.gz # name of the TGZ
+hadoop_unzip_dir: hadoop-1.2.0 # name of the directory created when unziping 'hadoop_tgz'

@@ -84,7 +84,7 @@
 - name: Create NFS directories
   file: path={{item}} owner=hadoop group=hadoop mode=0775 state=directory
   with_items:
-     - /srv/nfs/hadoop-1.2.0-logs
+     - /srv/nfs/hadoop-{{hadoop_version}}-logs
 
 - name: Register EPEL repository
   yum: name=https://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm state=present
@@ -102,11 +102,11 @@
   tags: jdk
 
 - name: Unzip Hadoop
-  shell: wget -O - {{ webserver_uri }}/hadoop/hadoop-1.2.0-bin.tar.gz | tar xzf - -C /home/hadoop creates=/home/hadoop/hadoop-1.2.0
+  shell: wget -O - {{ webserver_uri }}/hadoop/{{ hadoop_tgz }} | tar xzf - -C /home/hadoop creates=/home/hadoop/{{hadoop_unzip_dir}}
   tags: hadoop
 
 - name: Configure Hadoop
-  template: src={{item}} dest=/home/hadoop/hadoop-1.2.0/conf/{{item}}
+  template: src={{item}} dest=/home/hadoop/{{ hadoop_unzip_dir }}/conf/{{item}}
   with_items:
      - hdfs-site.xml
      - mapred-site.xml
@@ -116,10 +116,10 @@
   tags: hadoop
 
 - name: Configure Hadoop environment
-  lineinfile: dest=/home/hadoop/hadoop-1.2.0/conf/hadoop-env.sh regexp="^{{item.re}}"  line="{{item.line}}"
+  lineinfile: dest=/home/hadoop/{{ hadoop_unzip_dir }}/conf/hadoop-env.sh regexp="^{{item.re}}"  line="{{item.line}}"
   with_items:
      - { re: 'export JAVA_HOME=',       line: 'export JAVA_HOME=/usr/java/jdk1.6.0_31' }
      - { re: 'export HADOOP_HEAPSIZE=', line: 'export HADOOP_HEAPSIZE=512' }
      - { re: 'export HADOOP_SSH_OPTS=', line: 'export HADOOP_SSH_OPTS=\"-o ConnectTimeout=5 -o SendEnv=HADOOP_CONF_DIR -o StrictHostKeyChecking=no\"' }
-     - { re: 'export HADOOP_LOG_DIR=',  line: 'export HADOOP_LOG_DIR=/srv/nfs/hadoop-1.2.0-logs' }
+     - { re: 'export HADOOP_LOG_DIR=',  line: 'export HADOOP_LOG_DIR=/srv/nfs/hadoop-{{hadoop_version}}-logs' }
   tags: hadoop

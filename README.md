@@ -24,9 +24,7 @@ The customizations are loaded from local.yml (see local.yml.example)
 
 ### TODO
 
-- remove all the hardcoded values (proxy, mirror, etc.)
 - initial setup of ssh keys and sudo
-- add example 'hosts' for Ansible
 
 ### Some ideas
 
@@ -34,7 +32,6 @@ The customizations are loaded from local.yml (see local.yml.example)
 - setup DNS? (ej: on master or dedicated server)
 - setup HTTP server (ej: on master or dedicated server)
 - setup seconrady DNS on all the nodes?
-- other Hadoop versions?
 - add KickStart file on HTTP server
 - add monitoring (ej: nagios, munin, ganglia, etc.)
 
