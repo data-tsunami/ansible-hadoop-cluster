@@ -75,7 +75,7 @@
      - /srv/hadoop/mapred/system
 
 - name: Setup fstab
-  mount: name=/srv/nfs src=nfs.fx8120.hgdeoro.com.ar:/srv/nfs fstype=nfs4 opts=rw state=mounted
+  mount: name=/srv/nfs src={{ nfs_server }}:{{ nfs_export }} fstype=nfs4 opts=rw state=mounted
 
 - name: Register EPEL repository
   yum: name=https://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm state=present

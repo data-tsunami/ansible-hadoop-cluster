@@ -1,5 +1,7 @@
 ---
 proxy: http://proxy.my.domain:3128
+nfs_server: nfs.my.domain
+nfs_export: /srv/nfs
 yum_mirror: http://centos.xfree.com.ar/6.4
 hadoop_namenode: nn.my.domain
 hadoop_secondarynamenode: secnn.my.domain
