@@ -1,5 +1,5 @@
 ---
-- name: Check
-  debug: "Check"
-  tags: check
+- name: Ping
+  ping:
+  tags: ping
 

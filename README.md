@@ -7,7 +7,8 @@ There are a lot of hardcoded stuff, but I share this
 as an exampe of what Andible can do (and how to do it).
 
 Requires a working http proxy (like Squid) to speedup installs,
-and a exported NFS, to centralize Hadoops logs.
+and a exported NFS, to centralize Hadoops logs, and some binaries
+downloables from an HTTP server (JDK, Hadoop).
 
 ## Already done
 
@@ -29,9 +30,13 @@ and a exported NFS, to centralize Hadoops logs.
 
 ### Some ideas
 
-- setup NFS server? (ej: on master)
-- setup DNS? (ej: on master)
-- setup proxy? (ej: on master)
+- setup NFS server? (ej: on master or dedicated server)
+- setup DNS? (ej: on master or dedicated server)
+- setup HTTP server (ej: on master or dedicated server)
+- setup seconrady DNS on all the nodes?
+- other Hadoop versions?
+- add KickStart file on HTTP server
+- add monitoring (ej: nagios, munin, ganglia, etc.)
 
 # Some notes
 
@@ -39,13 +44,17 @@ To disable ssh host key checking:
 
     $ export ANSIBLE_HOST_KEY_CHECKING=False
 
-To run a check:
+To ping the hosts:
 
-    $ ansible-playbook -i hosts --check -v site.yml
+    $ ansible-playbook -i hosts -t ping site.yml
 
-To run the playbook:
+Setup master:
 
-    $ ansible-playbook -i hosts site.yml
+    $ ansible-playbook -i hosts -l master -v site.yml
+
+Setup slaves:
+
+    $ ansible-playbook -i hosts -l slave -v site.yml
 
 # License
 
