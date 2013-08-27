@@ -3,14 +3,18 @@ Ansible playbook for my Hadoop cluster
 
 Setup a Hadoop cluster on CentOS 6.4 servers.
 
-There are a lot of hardcoded stuff, but I share this
-as an exampe of what Andible can do (and how to do it).
+This playbook:
 
-Requires a working http proxy (like Squid) to speedup installs,
-and a exported NFS, to centralize Hadoops logs, and some binaries
-downloables from an HTTP server (JDK RPMs and Hadoop .tgz).
+- configures CentOS to use a http proxy (like Squid) to speedup installs of RPMs
+- mounts a NFS share (it's up to you to setup the NFS server) to centralize Hadoops logs
+- install Java and Hadoop.
 
-The customizations are loaded from local.yml (see local.yml.example)
+You must have:
+
+ - a NFS server: it's up to you to setup the NFS server, and export a share as read-write
+ - a web server with Sun/Oracle JDK 1.6u31 64bits + Hadoop binaries
+
+The customizations are loaded from local.yml (see local.yml.example).
 
 ## Already done
 
