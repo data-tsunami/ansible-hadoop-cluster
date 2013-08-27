@@ -24,6 +24,7 @@ The customizations are loaded from local.yml (see local.yml.example)
 
 ### TODO
 
+- Format the NameNode
 - FIX: easier install of Hadoop: download binary from mirror
 - FIX: easier install of JDK
 - initial setup of ssh keys and sudo
