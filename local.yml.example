@@ -1,2 +1,3 @@
 ---
 proxy: http://proxy.my.domain:3128
+yum_mirror: http://centos.xfree.com.ar/6.4

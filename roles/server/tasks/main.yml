@@ -78,7 +78,7 @@
   mount: name=/srv/nfs src=nfs.fx8120.hgdeoro.com.ar:/srv/nfs fstype=nfs4 opts=rw state=mounted
 
 - name: Register EPEL repository
-  yum: name=http://epel.mirror.mendoza-conicet.gob.ar/6/i386/epel-release-6-8.noarch.rpm state=present
+  yum: name=https://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm state=present
 
 - name: Install Java
   yum: name="{{item}}" state=present

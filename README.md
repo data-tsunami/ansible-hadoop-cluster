@@ -23,7 +23,6 @@ downloables from an HTTP server (JDK, Hadoop).
 ### TODO
 
 - remove all the hardcoded values (proxy, mirror, etc.)
-- parametrization of YUM mirrors
 - parametrization of namenode, secnamenode, tasktracker
 - initial setup of ssh keys and sudo
 - add example 'hosts' for Ansible
