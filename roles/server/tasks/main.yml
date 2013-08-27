@@ -68,7 +68,7 @@
 
   tags: ssh
 
-- name: Create directories
+- name: Create local directories
   file: path={{item}} owner=hadoop group=hadoop mode=0755 state=directory
   with_items:
      - /srv/nfs
@@ -80,6 +80,11 @@
 
 - name: Setup fstab
   mount: name=/srv/nfs src={{ nfs_server }}:{{ nfs_export }} fstype=nfs4 opts=rw state=mounted
+
+- name: Create NFS directories
+  file: path={{item}} owner=hadoop group=hadoop mode=0775 state=directory
+  with_items:
+     - /srv/nfs/hadoop-1.2.0-logs
 
 - name: Register EPEL repository
   yum: name=https://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm state=present
