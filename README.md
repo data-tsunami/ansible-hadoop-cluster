@@ -13,20 +13,25 @@ and a exported NFS, to centralize Hadoops logs.
 
 - works against CentOS 6.4
 - set YUM mirror and proxy
-- disable YUM 
-
-### Pending tasks
-
+- disable fastestmirror YUM plugin
+- setup NFS client & fstab (to share logs)
+- install JDK
 - install Hadoop
 - setup Hadoop
 
 ### TODO
 
-- remove all the hardcoded values (see next items)
-- parametrization of ssh user to connect
+- remove all the hardcoded values (proxy, mirror, etc.)
 - parametrization of proxy and YUM mirror
+- parametrization of namenode, secnamenode, tasktracker
 - initial setup of ssh keys and sudo
 - add example 'hosts' for Ansible
+
+### Some ideas
+
+- setup NFS server? (ej: on master)
+- setup DNS? (ej: on master)
+- setup proxy? (ej: on master)
 
 # Some notes
 
