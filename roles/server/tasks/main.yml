@@ -53,14 +53,14 @@
   tags: ssh
 
 - name: Setup ssh keys
-  copy: src=local/{{item.f}} dest=~/.ssh/{{item.f}} owner={{item.u}} group={{item.u}} mode=0600
+  copy: src=local/{{item.f}} dest={{item.h}}/.ssh/{{item.f}} owner={{item.u}} group={{item.u}} mode=0600
   with_items:
-    - { u: 'root', f: 'id_rsa_hadoop' }
-    - { u: 'root', f: 'id_rsa_hadoop.pub' }
-    - { u: 'hadoop', f: 'id_rsa_hadoop' }
-    - { u: 'hadoop', f: 'id_rsa_hadoop.pub' }
-    - { u: 'horacio', f: 'id_rsa_hadoop' }
-    - { u: 'horacio', f: 'id_rsa_hadoop.pub' }
+    - { u: 'root',    h: '/root',         f: 'id_rsa' }
+    - { u: 'root',    h: '/root',         f: 'id_rsa.pub' }
+    - { u: 'hadoop',  h: '/home/hadoop',  f: 'id_rsa' }
+    - { u: 'hadoop',  h: '/home/hadoop',  f: 'id_rsa.pub' }
+    - { u: 'horacio', h: '/home/horacio', f: 'id_rsa' }
+    - { u: 'horacio', h: '/home/horacio', f: 'id_rsa.pub' }
 
   tags: ssh
 
