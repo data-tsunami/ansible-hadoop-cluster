@@ -4,7 +4,7 @@
   tags: yum
 
 - name: YUM - Setup proxy
-  ini_file: dest=/etc/yum.conf section=main option=proxy value=http://proxy.fx8120.hgdeoro.com.ar:3128
+  ini_file: dest=/etc/yum.conf section=main option=proxy value={{proxy}}
   tags: yum
 
 - name: Use specific YUM mirror
@@ -32,9 +32,9 @@
 - name: Setup proxy on wgetrc
   lineinfile: dest=/etc/wgetrc regexp="^{{item.re}}"  line="{{item.line}}"
   with_items:
-     - { re: 'http_proxy',  line: 'http_proxy = http://proxy.fx8120.hgdeoro.com.ar:3128' }
-     - { re: 'https_proxy', line: 'https_proxy = http://proxy.fx8120.hgdeoro.com.ar:3128' }
-     - { re: 'ftp_proxy',   line: 'ftp_proxy = http://proxy.fx8120.hgdeoro.com.ar:3128' }
+     - { re: 'http_proxy',  line: 'http_proxy = {{ proxy }}' }
+     - { re: 'https_proxy', line: 'https_proxy = {{ proxy }}' }
+     - { re: 'ftp_proxy',   line: 'ftp_proxy = {{ proxy }}' }
      - { re: 'use_proxy',   line: 'use_proxy = on' }
   tags: proxy
 

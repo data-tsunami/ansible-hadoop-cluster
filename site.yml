@@ -3,7 +3,8 @@
 - name: Hadoop master node setup
   hosts: master
   sudo: true
-
+  vars_files:
+    - local.yml
   roles:
     - server
     - master
@@ -11,7 +12,8 @@
 - name: Hadoop slave nodes setup
   hosts: slave
   sudo: true
-
+  vars_files:
+    - local.yml
   roles:
     - server
     - slave
