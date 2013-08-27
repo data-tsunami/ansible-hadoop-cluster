@@ -84,16 +84,14 @@
   shell: wget -O - http://nfs.fx8120.hgdeoro.com.ar/nfs/ro/hadoop/hadoop-1.2.0-bin.tar.gz | tar xzf - -C /home/hadoop creates=/home/hadoop/hadoop-1.2.0
   tags: hadoop
 
-- name: Configure Hadoop HDFS
-  template: src=hdfs-site.xml dest=/home/hadoop/hadoop-1.2.0/conf/hdfs-site.xml
-  tags: hadoop
-
-- name: Configure Hadoop MAPRED
-  template: src=mapred-site.xml dest=/home/hadoop/hadoop-1.2.0/conf/mapred-site.xml
-  tags: hadoop
-
-- name: Configure Hadoop CORE
-  template: src=core-site.xml dest=/home/hadoop/hadoop-1.2.0/conf/core-site.xml
+- name: Configure Hadoop
+  template: src={{item}} dest=/home/hadoop/hadoop-1.2.0/conf/{{item}}
+  with_items:
+     - hdfs-site.xml
+     - mapred-site.xml
+     - core-site.xml
+     - masters
+     - slaves
   tags: hadoop
 
 - name: Configure Hadoop environment
