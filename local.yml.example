@@ -1,5 +1,6 @@
 ---
 proxy: http://proxy.my.domain:3128
+webserver_uri: http://www.my.domain/public
 nfs_server: nfs.my.domain
 nfs_export: /srv/nfs
 yum_mirror: http://centos.xfree.com.ar/6.4
