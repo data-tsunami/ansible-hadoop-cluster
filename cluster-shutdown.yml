@@ -1,0 +1,10 @@
+---
+
+- name: Shutdown all the servers (Hadoop nodes & infrastructure servers)
+  hosts: nodes,infrastructure
+  sudo: true
+  gather_facts: no
+  vars_files:
+    - local.yml
+  tasks:
+    - command: halt

@@ -1,11 +1,18 @@
 ---
-
 - name: Start Hadoop cluster
-  hosts: master
+  hosts: namenode
   sudo: true
   sudo_user: hadoop
   gather_facts: no
-  vars_files:
-    - local.yml
   tasks:
-    - command: /home/hadoop/{{ hadoop_unzip_dir }}/bin/start-all.sh
+    - name: Launch Hadoop DFS daemons from namenode
+      command: /home/hadoop/{{ hadoop_unzip_dir }}/bin/start-dfs.sh
+
+- name: Start Hadoop cluster
+  hosts: jobtracker
+  sudo: true
+  sudo_user: hadoop
+  gather_facts: no
+  tasks:
+    - name: Launch Hadoop JobTracker daemons from jobtracker
+      command: /home/hadoop/{{ hadoop_unzip_dir }}/bin/start-mapred.sh
