@@ -28,20 +28,20 @@ The customizations are loaded from local.yml (see local.yml.example).
 
 ### TODO
 
-- Format the NameNode
-- FIX: easier install of Hadoop: download binary from mirror
-- FIX: easier install of JDK
-- initial setup of ssh keys and sudo
+- FIX: format the NameNode
+- FIX: easier install of Hadoop: download binary from mirror if not exists in files/
+- FIX: make NFS optional
+- Setup NFS server (on master or 'infrastructure' server; required for centralized logs)
+- Setup web server (required for kickstar)
+- Deploy KickStart file on web server
+- Initial setup of ssh keys and sudo? (don't know if possible, since it's required for Ansible)
 
 ### Some ideas
 
-- setup NFS server? (ej: on master or dedicated server)
-- setup DNS? (ej: on master or dedicated server)
-- setup HTTP server (ej: on master or dedicated server)
-- setup seconrady DNS on all the nodes?
-- add KickStart file on HTTP server
 - add monitoring (ej: nagios, munin, ganglia, etc.)
 - create virtual machines with libvirt
+- setup DNS? (on 'infrastructure' server)
+- setup seconrady DNS on all the nodes?
 
 # Some notes
 
