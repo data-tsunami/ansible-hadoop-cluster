@@ -97,6 +97,7 @@
      - "sun-javadb-javadoc-10.6.2-1.1.i386.rpm"
      - "jdk-6u31-linux-amd64.rpm"
      - "epel-release-6-8.noarch.rpm"
+     - "{{ hadoop_tgz }}"
   tags: upload
 
 - name: Register EPEL repository
@@ -116,7 +117,7 @@
   tags: jdk
 
 - name: Unzip Hadoop
-  shell: wget -O - {{ webserver_uri }}/hadoop/{{ hadoop_tgz }} | tar xzf - -C /home/hadoop creates=/home/hadoop/{{hadoop_unzip_dir}}
+  command: tar xzf /tmp/{{ hadoop_tgz }} -C /home/hadoop creates=/home/hadoop/{{hadoop_unzip_dir}}
   tags: hadoop
 
 - name: Configure Hadoop
