@@ -12,7 +12,7 @@ This playbook:
 You must have:
 
  - a NFS server: it's up to you to setup the NFS server, and export a share as read-write
- - a web server with Sun/Oracle JDK 1.6u31 64bits + Hadoop binaries
+ - Sun/Oracle JDK 1.6u31 64bits + Hadoop binaries in the files/ directory (see files/README.txt)
 
 The customizations are loaded from local.yml (see local.yml.example).
 
@@ -41,6 +41,7 @@ The customizations are loaded from local.yml (see local.yml.example).
 - setup seconrady DNS on all the nodes?
 - add KickStart file on HTTP server
 - add monitoring (ej: nagios, munin, ganglia, etc.)
+- create virtual machines with libvirt
 
 # Some notes
 
@@ -50,15 +51,11 @@ To disable ssh host key checking:
 
 To ping the hosts:
 
-    $ ansible-playbook -i hosts -t ping site.yml
+    $ ansible-playbook -i hosts -t check site.yml
 
-Setup master:
+Setup the cluster:
 
-    $ ansible-playbook -i hosts -l master -v site.yml
-
-Setup slaves:
-
-    $ ansible-playbook -i hosts -l slave -v site.yml
+    $ ansible-playbook -i hosts site.yml
 
 # License
 
