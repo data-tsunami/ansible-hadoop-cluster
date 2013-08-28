@@ -66,7 +66,6 @@
     - { u: 'hadoop',  h: '/home/hadoop',  f: 'id_rsa.pub' }
     - { u: 'horacio', h: '/home/horacio', f: 'id_rsa' }
     - { u: 'horacio', h: '/home/horacio', f: 'id_rsa.pub' }
-
   tags: ssh
 
 - name: Create local directories
@@ -87,19 +86,33 @@
   with_items:
      - /srv/nfs/hadoop-{{hadoop_version}}-logs
 
+- name: Copy RPMs
+  copy: src=files/{{item}} dest=/tmp/{{item}} owner=root group=root mode=0644 force=no
+  with_items:
+     - "sun-javadb-common-10.6.2-1.1.i386.rpm"
+     - "sun-javadb-client-10.6.2-1.1.i386.rpm"
+     - "sun-javadb-core-10.6.2-1.1.i386.rpm"
+     - "sun-javadb-demo-10.6.2-1.1.i386.rpm"
+     - "sun-javadb-docs-10.6.2-1.1.i386.rpm"
+     - "sun-javadb-javadoc-10.6.2-1.1.i386.rpm"
+     - "jdk-6u31-linux-amd64.rpm"
+     - "epel-release-6-8.noarch.rpm"
+  tags: upload
+
 - name: Register EPEL repository
-  yum: name=https://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm state=present
+  yum: name="/tmp/epel-release-6-8.noarch.rpm" state=present
+  tags: yum
 
 - name: Install Java
   yum: name="{{item}}" state=present
   with_items:
-     - "{{webserver_uri}}/jdk/sun-javadb-common-10.6.2-1.1.i386.rpm"
-     - "{{webserver_uri}}/jdk/sun-javadb-client-10.6.2-1.1.i386.rpm"
-     - "{{webserver_uri}}/jdk/sun-javadb-core-10.6.2-1.1.i386.rpm"
-     - "{{webserver_uri}}/jdk/sun-javadb-demo-10.6.2-1.1.i386.rpm"
-     - "{{webserver_uri}}/jdk/sun-javadb-docs-10.6.2-1.1.i386.rpm"
-     - "{{webserver_uri}}/jdk/sun-javadb-javadoc-10.6.2-1.1.i386.rpm"
-     - "{{webserver_uri}}/jdk/jdk-6u31-linux-amd64.rpm"
+     - "/tmp/sun-javadb-common-10.6.2-1.1.i386.rpm"
+     - "/tmp/sun-javadb-client-10.6.2-1.1.i386.rpm"
+     - "/tmp/sun-javadb-core-10.6.2-1.1.i386.rpm"
+     - "/tmp/sun-javadb-demo-10.6.2-1.1.i386.rpm"
+     - "/tmp/sun-javadb-docs-10.6.2-1.1.i386.rpm"
+     - "/tmp/sun-javadb-javadoc-10.6.2-1.1.i386.rpm"
+     - "/tmp/jdk-6u31-linux-amd64.rpm"
   tags: jdk
 
 - name: Unzip Hadoop

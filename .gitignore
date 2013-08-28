@@ -1,4 +1,5 @@
 /virtualenv
 /roles/server/files/local/*
+/files/*
 /local.yml
 /hosts
