@@ -1,8 +1,26 @@
-[master]
-master.my.domain
+# Server needed to install & manage the cluster, but doesn't run Hadoop
+[infrastructure]
+nfs.my.domain
+web.my.domain
+proxy.my.domain
 
-[slave]
+# NameNode
+[namenode]
+namenode.my.domain
+
+# JobTracker
+[jobtracker]
+jobtracker.my.domain
+
+# Slaves
+[slaves]
 slave1.my.domain
 slave2.my.domain
 slave3.my.domain
 slave4.my.domain
+
+# The 'nodes' group will have all the nodes of the Hadoop cluster
+[nodes:children]
+namenode
+jobtracker
+slaves

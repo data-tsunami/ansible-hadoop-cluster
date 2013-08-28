@@ -2,6 +2,7 @@
 - name: Check CentOS version
   fail: msg="Only {{ansible_distribution}} {{ansible_distribution_version}} supported"
   when: ansible_distribution != 'CentOS' or ansible_distribution_version != '6.4'
+  tags: check
 
 - name: YUM - disable fastestmirror plugin
   ini_file: dest=/etc/yum/pluginconf.d/fastestmirror.conf section=main option=enabled value=0
