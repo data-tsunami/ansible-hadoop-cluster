@@ -13,8 +13,8 @@ You must have:
 
  - a NFS server: it's up to you to setup the NFS server, and export a share as read-write
  - Sun/Oracle JDK 1.6u31 64bits + Hadoop binaries in the files/ directory (see files/README.txt)
-
-The customizations are loaded from local.yml (see local.yml.example).
+ - your hosts defined in `hosts` file (see `hosts.example` as reference)
+ - your settings customized in `local.yml` file (see `local.yml.example` as reference)
 
 ## Already done
 
@@ -25,6 +25,7 @@ The customizations are loaded from local.yml (see local.yml.example).
 - install JDK
 - install Hadoop
 - setup Hadoop
+- start/stop Hadoop cluster
 
 ### TODO
 
@@ -49,13 +50,17 @@ To disable ssh host key checking:
 
     $ export ANSIBLE_HOST_KEY_CHECKING=False
 
-To ping the hosts:
-
-    $ ansible-playbook -i hosts -t check site.yml
-
 Setup the cluster:
 
     $ ansible-playbook -i hosts site.yml
+
+To start Hadoop:
+
+    $ ansible-playbook -i hosts -v start-hadoop.yml
+
+To stop Hadoop:
+
+    $ ansible-playbook -i hosts -v stop-hadoop.yml
 
 # License
 
