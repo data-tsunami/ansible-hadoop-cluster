@@ -1,0 +1,4 @@
+---
+- name: Format NameNode
+  command: /home/hadoop/{{hadoop_unzip_dir}}/bin/hadoop namenode -format -nonInteractive creates=/srv/hadoop/hdfs
+  tags: hadoop
