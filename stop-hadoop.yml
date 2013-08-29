@@ -1,18 +1,22 @@
 ---
-- name: Stop Hadoop DFS daemons
-  hosts: namenode
-  sudo: true
-  sudo_user: hadoop
-  gather_facts: no
-  tasks:
-    - name: Stop Hadoop DFS daemons from namenode
-      command: /home/hadoop/{{ hadoop_unzip_dir }}/bin/stop-dfs.sh
-
 - name: Stop Hadoop JobTracker
   hosts: jobtracker
   sudo: true
   sudo_user: hadoop
   gather_facts: no
+  vars_files:
+    - local.yml
   tasks:
     - name: Stop Hadoop JobTracker daemons from jobtracker
       command: /home/hadoop/{{ hadoop_unzip_dir }}/bin/stop-mapred.sh
+
+- name: Stop Hadoop DFS daemons
+  hosts: namenode
+  sudo: true
+  sudo_user: hadoop
+  gather_facts: no
+  vars_files:
+    - local.yml
+  tasks:
+    - name: Stop Hadoop DFS daemons from namenode
+      command: /home/hadoop/{{ hadoop_unzip_dir }}/bin/stop-dfs.sh

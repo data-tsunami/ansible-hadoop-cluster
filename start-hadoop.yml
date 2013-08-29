@@ -4,6 +4,8 @@
   sudo: true
   sudo_user: hadoop
   gather_facts: no
+  vars_files:
+    - local.yml
   tasks:
     - name: Launch Hadoop DFS daemons from namenode
       command: /home/hadoop/{{ hadoop_unzip_dir }}/bin/start-dfs.sh
@@ -13,6 +15,8 @@
   sudo: true
   sudo_user: hadoop
   gather_facts: no
+  vars_files:
+    - local.yml
   tasks:
     - name: Launch Hadoop JobTracker daemons from jobtracker
       command: /home/hadoop/{{ hadoop_unzip_dir }}/bin/start-mapred.sh
