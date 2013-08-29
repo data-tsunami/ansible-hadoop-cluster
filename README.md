@@ -34,6 +34,7 @@ You must have:
 - FIX: make NFS optional
 - Setup NFS server (on master or 'infrastructure' server; required for centralized logs)
 - Setup web server (required for kickstar)
+- Setup init scripts for Hadoop
 - Deploy KickStart file on web server
 - Initial setup of ssh keys and sudo? (don't know if possible, since it's required for Ansible)
 
