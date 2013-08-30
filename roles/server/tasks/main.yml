@@ -25,9 +25,12 @@
      - git
      - nfs-utils
      - portmap
-#     - tcpdump
-#     - nmap
-#     - screen
+     - wipe
+  tags: yum
+
+- name: Install packages of Base group
+  yum: name=@base state=installed
+  # sudo yum groupinstall base
   tags: yum
 
 - name: Setup proxy via env variables
