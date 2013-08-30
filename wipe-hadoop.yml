@@ -1,0 +1,14 @@
+---
+- name: Wipe datanodes
+  hosts: slaves
+  sudo: true
+  vars_files:
+    - local.yml
+  tasks:
+    - name: Fill disks with zeros
+      command: dd if=/dev/zero of=/srv/hadoop/data/ZEROS bs=512k
+      ignore_errors: True
+    - name: Remove file with zeros
+      file: path=/srv/hadoop/data/ZEROS state=absent
+    - name: Wipe data
+      command: wipe -f -F -q -Q 1 -r -S p /srv/hadoop/data
