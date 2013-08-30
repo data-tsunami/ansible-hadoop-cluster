@@ -63,6 +63,10 @@ To stop Hadoop:
 
     $ ansible-playbook -i hosts -v stop-hadoop.yml
 
+To run a command on all the nodes:
+
+    $ ansible -i hosts nodes -m command -a "sudo du -hsx /srv/hadoop"
+
 # License
 
 Creative Commons - Attribution-ShareAlike 3.0 Unported
