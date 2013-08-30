@@ -3,16 +3,17 @@ Ansible playbook for my Hadoop cluster
 
 Setup a Hadoop cluster on CentOS 6.4 servers.
 
-This playbook:
+This playbook starts with a just installed CentOS 6.4 (you need ssh access + sudo working) and:
 
-- configures CentOS to use a http proxy (like Squid) to speedup installs of RPMs
-- mounts a NFS share (it's up to you to setup the NFS server) to centralize Hadoops logs
-- install Java and Hadoop.
+- configures each nodes to use a http proxy to speedup installs of RPMs (to be kind with mirrors and do faster deploys)
+- setups /etc/fstab and mounts a NFS share in each node (it's up to you to setup the NFS server) to centralize Hadoops logs
+- install Java and Hadoop on each node
+- format the name node.
 
-You must have:
+To make this work, you must have:
 
- - a NFS server: it's up to you to setup the NFS server, and export a share as read-write
- - Sun/Oracle JDK 1.6u31 64bits + Hadoop binaries in the files/ directory (see files/README.txt)
+ - a NFS server configured: it's up to you to setup the NFS server, and export a share as read-write
+ - Sun/Oracle JDK 1.6u31 64bits + Hadoop binaries in the ./files/ directory (see ./files/README.txt)
  - your hosts defined in `hosts` file (see `hosts.example` as reference)
  - your settings customized in `local.yml` file (see `local.yml.example` as reference)
 
@@ -29,7 +30,6 @@ You must have:
 
 ### TODO
 
-- FIX: format the NameNode
 - FIX: easier install of Hadoop: download binary from mirror if not exists in files/
 - FIX: make NFS optional
 - Setup NFS server (on master or 'infrastructure' server; required for centralized logs)
