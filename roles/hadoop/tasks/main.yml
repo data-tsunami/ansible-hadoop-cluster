@@ -1,0 +1,45 @@
+---
+- name: Create local directories
+  file: path={{item}} owner=hadoop group=hadoop mode=0755 state=directory
+  with_items:
+     - /srv/nfs
+     - /srv/hadoop
+     - /srv/hadoop/data
+     - /srv/hadoop/secondary-namenode-checkpoint
+     - /srv/hadoop/mapred
+     - /srv/hadoop/mapred/local
+     - /srv/hadoop/mapred/system
+
+- name: Setup fstab
+  mount: name=/srv/nfs src={{ nfs_server }}:{{ nfs_export }} fstype=nfs4 opts=rw state=mounted
+
+- name: Create NFS directories
+  file: path={{item}} owner=hadoop group=hadoop mode=0775 state=directory
+  with_items:
+     - /srv/nfs/hadoop-{{hadoop_version}}-logs
+
+- name: Unzip Hadoop
+  sudo_user: hadoop
+  command: tar xzf /tmp/{{ hadoop_tgz }} -C /home/hadoop creates=/home/hadoop/{{hadoop_unzip_dir}}
+  tags: hadoop
+
+- name: Configure Hadoop
+  template: src={{item}} dest=/home/hadoop/{{ hadoop_unzip_dir }}/conf/{{item}}
+  sudo_user: hadoop
+  with_items:
+     - hdfs-site.xml
+     - mapred-site.xml
+     - core-site.xml
+     - masters # this file contains the name or IP of the secondary name node
+     - slaves  # this file contains the names or IPs of the slaves nodes
+  tags: hadoop
+
+- name: Configure Hadoop environment
+  sudo_user: hadoop
+  lineinfile: dest=/home/hadoop/{{ hadoop_unzip_dir }}/conf/hadoop-env.sh regexp="^{{item.re}}"  line="{{item.line}}"
+  with_items:
+     - { re: 'export JAVA_HOME=',       line: 'export JAVA_HOME=/usr/java/jdk1.6.0_31' }
+     - { re: 'export HADOOP_HEAPSIZE=', line: 'export HADOOP_HEAPSIZE=512' }
+     - { re: 'export HADOOP_SSH_OPTS=', line: 'export HADOOP_SSH_OPTS=\"-o ConnectTimeout=5 -o SendEnv=HADOOP_CONF_DIR -o StrictHostKeyChecking=no\"' }
+     - { re: 'export HADOOP_LOG_DIR=',  line: 'export HADOOP_LOG_DIR=/srv/nfs/hadoop-{{hadoop_version}}-logs' }
+  tags: hadoop

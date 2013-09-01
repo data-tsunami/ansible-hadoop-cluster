@@ -6,12 +6,13 @@
     - local.yml
   roles:
     - server
+    - hadoop
 
 - name: Setup Hadoop namenode
   hosts: namenode
   sudo: true
-  sudo_user: hadoop
   vars_files:
     - local.yml
   roles:
+    - server
     - namenode
