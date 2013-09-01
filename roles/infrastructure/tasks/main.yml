@@ -1,0 +1,21 @@
+---
+- name: Install basic packages
+  yum: name={{ item }} state=installed
+  with_items:
+     - httpd
+  tags: yum
+
+- name: Create NFS directory
+  file: path=/srv/nfs owner=hadoop group=hadoop mode=0775 state=directory
+
+- name: Setup NFS server
+  template: src=exports dest=/etc/exports
+  tags: nfs
+
+#- name: Setup httpd
+#  template: src= dest=
+#  tags: httpd
+#
+#- name: Copy KickStar files
+#  template: src= dest=
+#  tags: kickstar
