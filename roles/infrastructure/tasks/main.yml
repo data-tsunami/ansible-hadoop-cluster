@@ -7,11 +7,20 @@
 
 - name: Create NFS directory
   file: path=/srv/nfs owner=hadoop group=hadoop mode=0775 state=directory
+  tags: nfs
 
 - name: Setup NFS server
   template: src=exports dest=/etc/exports
   notify:
     - reload nfs exports
+  tags: nfs
+
+- name: Setup NFS service
+  service: name={{ item }} enabled=yes state=started
+  with_items:
+    - rpcbind
+    - nfslock
+    - nfs
   tags: nfs
 
 #- name: Setup httpd
