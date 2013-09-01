@@ -10,6 +10,8 @@
 
 - name: Setup NFS server
   template: src=exports dest=/etc/exports
+  notify:
+    - reload nfs exports
   tags: nfs
 
 #- name: Setup httpd
