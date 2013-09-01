@@ -1,12 +1,36 @@
 ---
+# URL of the http proxy
 proxy: http://proxy.my.domain:3128
+
+# Base url to use to download various resources
 webserver_uri: http://www.my.domain/public
+
+# IP / hostname of the NFS server
 nfs_server: nfs.my.domain
+
+# Directory exported in the NFS server
 nfs_export: /srv/nfs
+
+# network + netmask allowed to use the exported directory
+nfs_export_network: 192.168.122.0/24
+
+# YUM/RPM mirror to use
 yum_mirror: http://centos.xfree.com.ar/6.4
+
+# IP / hostname of the Hadoop NameNode
 hadoop_namenode: nn.my.domain
+
+# IP / hostname of the Hadoop Secondary NameNode
 hadoop_secondarynamenode: secnn.my.domain
+
+# IP / hostname of the Hadoop Job Tracker
 hadoop_jobtracker: jt.my.domain
-hadoop_version: 1.2.0 # used to create the directory for logs: /srv/nfs/hadoop-{{hadoop_version}}-logs
-hadoop_tgz: hadoop-1.2.0-bin.tar.gz # name of the TGZ
+
+# Hadoop version - used to create the directory for logs: /srv/nfs/hadoop-{{hadoop_version}}-logs
+hadoop_version: 1.2.0
+
+# Hadoop binaries
+hadoop_tgz: hadoop-1.2.0-bin.tar.gz
+
+# The directory created when unzipping the 'hadoop_tgz'
 hadoop_unzip_dir: hadoop-1.2.0 # name of the directory created when unziping 'hadoop_tgz'
