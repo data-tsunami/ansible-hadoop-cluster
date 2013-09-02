@@ -15,12 +15,13 @@
     - reload nfs exports
   tags: nfs
 
-- name: Setup NFS service
+- name: Setup services
   service: name={{ item }} enabled=yes state=started
   with_items:
     - rpcbind
     - nfslock
     - nfs
+    - httpd
   tags: nfs
 
 #- name: Setup httpd
