@@ -2,7 +2,10 @@
 - name: Install basic packages
   yum: name={{ item }} state=installed
   with_items:
-     - httpd
+    - httpd
+    - php
+  notify:
+    - restart httpd
   tags: yum
 
 - name: Create NFS directory
@@ -24,10 +27,6 @@
     - httpd
   tags: nfs
 
-#- name: Setup httpd
-#  template: src= dest=
-#  tags: httpd
-#
-#- name: Copy KickStar files
-#  template: src= dest=
-#  tags: kickstar
+- name: Copy KickStart files
+  template: src=kickstart--{{ansible_distribution}}-{{ansible_distribution_version}}.cfg.php dest=/var/www/html/kickstart.cfg.php owner=root group=root mode=0644
+  tags: kickstart
