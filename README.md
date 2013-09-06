@@ -59,39 +59,38 @@ The `site-infrastructure.yml` playbook does:
 
 # How to use
 
-1. Setup Ansible files for your deploy
+#### Setup Ansible files for your deploy
 
     $ cp local.yml.example local.yml
     $ vi local.yml
-
     $ cp hosts.example hosts
     $ vi hosts
 
-2. To disable ssh host key checking:
+#### To disable ssh host key checking:
 
     $ export ANSIBLE_HOST_KEY_CHECKING=False
 
-3. Setup the infrastructure server:
+#### Setup the infrastructure server:
 
     $ ansible-playbook -i hosts site-infrastructure.yml
 
-3. Setup the Hadoop cluster:
+#### Setup the Hadoop cluster:
 
     $ ansible-playbook -i hosts site.yml
 
-4. To start Hadoop:
+#### To start Hadoop:
 
     $ ansible-playbook -i hosts -v start-hadoop.yml
 
-5. Test the cluster:
+#### Test the cluster:
 
     $ ansible-playbook -i hosts -v check-hadoop.yml
 
-6. To stop Hadoop:
+#### To stop Hadoop:
 
     $ ansible-playbook -i hosts -v stop-hadoop.yml
 
-And, to run a command on all the nodes:
+#### And, to run a command on all the nodes:
 
     $ ansible -i hosts nodes -m command -a "sudo du -hsx /srv/hadoop"
 
