@@ -1,4 +1,5 @@
 ---
 - name: Format NameNode
+  sudo_user: hadoop
   command: /home/hadoop/{{hadoop_unzip_dir}}/bin/hadoop namenode -format -nonInteractive creates=/srv/hadoop/hdfs
   tags: hadoop
