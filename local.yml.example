@@ -34,3 +34,35 @@ hadoop_tgz: hadoop-1.2.0-bin.tar.gz
 
 # The directory created when unzipping the 'hadoop_tgz'
 hadoop_unzip_dir: hadoop-1.2.0 # name of the directory created when unziping 'hadoop_tgz'
+
+#----------------------------------------------------------------------
+# Kickstart configuration - Not needed if you don't use KickStart
+#----------------------------------------------------------------------
+# These variables are used to generate the KickStart file
+
+# The IP from where KickStart get the configuration
+ks_server_ip: 192.168.122.2
+
+# Username of the user to create
+ks_username: admin
+
+# The password of the user to create
+ks_password: adminpassword
+
+# Keyboard layout
+ks_keyboard: en
+
+# The timezone
+ks_timezone: America/Argentina/Cordoba
+
+# Domain
+ks_network_domain: internal.example.com
+
+# Netmask
+ks_network_mask: 255.255.255.0
+
+# Gateway
+ks_network_gw: 192.168.122.1
+
+# DNS
+ks_network_dns: 192.168.122.1
