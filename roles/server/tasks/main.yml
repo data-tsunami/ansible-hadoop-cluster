@@ -18,6 +18,7 @@
 
 - name: Copy RPMs
   copy: src=files/{{item}} dest=/tmp/{{item}} owner=root group=root mode=0644 force=no
+  # FIXME: some rpms are specific to Hadoop nodes (jdk & hadoop)
   with_items:
      - "sun-javadb-common-10.6.2-1.1.i386.rpm"
      - "sun-javadb-client-10.6.2-1.1.i386.rpm"
@@ -52,10 +53,12 @@
      - wipe
   tags: yum
 
-- name: Install packages of Base group
-  yum: name=@base state=installed
-  # sudo yum groupinstall base
-  tags: yum
+#- name: Install packages of Base group
+#  yum: name=@base state=installed
+#  # FIXME: this shouldn't be run every time since this is time consuming
+#  # sudo yum groupinstall base
+#  when: "{{ lookup('env','INSTALL_BASE_GROUP') }} == '1'"
+#  tags: yum
 
 - name: Setup proxy via env variables
   template: src=etc--profile.d--proxy.sh dest=/etc/profile.d/proxy.sh
@@ -77,6 +80,7 @@
   user: name=hadoop comment="User for Hadoop services" uid=599 group=hadoop state=present
 
 - name: Setup ssh authorized_key
+  # FIXME: remove 'horacio' and replace for 'ks_username', or better: 'custom_username'
   authorized_key: user="{{item}}" key="{{lookup('file', 'local/authorized_key.txt' )}}"
   with_items:
      - root
@@ -85,6 +89,7 @@
   tags: ssh
 
 - name: Setup ssh keys
+  # FIXME: remove 'horacio' and replace for 'ks_username', or better: 'custom_username'
   copy: src=local/{{item.f}} dest={{item.h}}/.ssh/{{item.f}} owner={{item.u}} group={{item.u}} mode=0600
   with_items:
     - { u: 'root',    h: '/root',         f: 'id_rsa' }
@@ -96,6 +101,7 @@
   tags: ssh
 
 - name: Install Java
+  # FIXME: some rpms are specific to Hadoop nodes (jdk & hadoop)
   yum: name="{{item}}" state=present
   with_items:
      - "/tmp/sun-javadb-common-10.6.2-1.1.i386.rpm"
