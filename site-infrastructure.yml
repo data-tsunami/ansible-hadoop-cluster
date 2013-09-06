@@ -1,0 +1,8 @@
+- name: Setup infrastructure server
+  hosts: infrastructure
+  sudo: true
+  vars_files:
+    - local.yml
+  roles:
+    - server
+    - infrastructure
