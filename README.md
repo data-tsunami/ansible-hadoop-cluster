@@ -59,7 +59,7 @@ The `site-infrastructure.yml` playbook does:
 
 # How to install
 
-    $ git clone https://github.com/hgdeoro/ansible-hadoop-cluster
+    $ git clone https://github.com/data-tsunami/ansible-hadoop-cluster.git
     $ cd ansible-hadoop-cluster/
     $ virtualenv -p python2.7 virtualenv
     $ . virtualenv/bin/activate
