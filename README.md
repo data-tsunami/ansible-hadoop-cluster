@@ -57,6 +57,14 @@ The `site-infrastructure.yml` playbook does:
 - setup secondary DNS on all the nodes, to speedup name resolutions
 - more Hadoop-related services (Hue, Pig, Hive, etc.)
 
+# How to install
+
+    $ git clone https://github.com/hgdeoro/ansible-hadoop-cluster
+    $ cd ansible-hadoop-cluster/
+    $ virtualenv -p python2.7 virtualenv
+    $ . virtualenv/bin/activate
+    $ pip install ansible
+
 # How to use
 
 #### Setup Ansible files for your deploy
