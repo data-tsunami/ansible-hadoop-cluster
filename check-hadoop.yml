@@ -1,0 +1,14 @@
+---
+- name: Check HDFS
+  hosts: namenode
+  sudo: true
+  sudo_user: hadoop
+  vars_files:
+    - local.yml
+  tasks:
+    - name: Run 'hadoop fs -ls /'
+      command: /home/hadoop/{{ hadoop_unzip_dir }}/bin/hadoop fs -ls /
+               chdir=/tmp
+    - name: Run 'hadoop TestDFSIO -write'
+      command: /home/hadoop/{{hadoop_unzip_dir}}/bin/hadoop jar /home/hadoop/{{hadoop_unzip_dir}}/hadoop-test-{{hadoop_version}}.jar TestDFSIO -write -nrFiles 2 -fileSize 2
+               chdir=/tmp
