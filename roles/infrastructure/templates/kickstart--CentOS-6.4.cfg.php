@@ -4,6 +4,7 @@ header('Content-type: text/plain');
 
 $ip       = $_GET["ip"]       or die("Missing 'ip' parameter - for example: 'ip=192.168.122.141&hostname=hadoop1'");
 $hostname = $_GET["hostname"] or die("Missing 'hostname' parameter - for example: 'ip=192.168.122.141&hostname=hadoop1'");
+$hadoop_part = $_GET["hadoop_part"];
 
 ?>
 #platform=x86, AMD64, or Intel EM64T
@@ -33,6 +34,9 @@ clearpart --all --initlabel
 part /boot --asprimary --fstype="ext4" --size=200
 part swap --fstype="swap" --size=512
 part / --fstype="ext4" --grow --size=1
+<?php if($hadoop_part) { ?>
+part /srv/hadoop --fstype="ext4" --size=<?php echo $hadoop_part ?>
+<?php } ?>
 
 #-----------------------------------------------------------------------------
 # Packages
@@ -53,11 +57,16 @@ wget
 # ssh keys
 #-----------------------------------------------------------------------------
 
-wget -O - {{ks_initial_ssh_keys_url}} | tar -xvzf - -C /home/{{ks_username}}
-wget -O - {{ks_initial_ssh_keys_url}} | tar -xvzf - -C /root
+mkdir      /home/{{ks_username}}/.ssh /root/.ssh
+chmod 0700 /home/{{ks_username}}/.ssh /root/.ssh
+
+wget -O /home/{{ks_username}}/.ssh/authorized_keys http://{{ks_server_ip}}/kickstart_authorized_keys
+wget -O /root/.ssh/authorized_keys                 http://{{ks_server_ip}}/kickstart_authorized_keys
 
 chown -R {{ks_username}}.{{ks_username}} /home/{{ks_username}}/.ssh
-chown -R root.root /root/.ssh
+chown -R root.root                       /root/.ssh
+
+chmod 0600 /home/{{ks_username}}/.ssh/authorized_keys /root/.ssh/authorized_keys
 
 #-----------------------------------------------------------------------------
 # sudo
