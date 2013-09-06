@@ -27,6 +27,12 @@
     - httpd
   tags: nfs
 
-- name: Copy KickStart files
+- name: Upload KickStart files to web server
   template: src=kickstart--{{ansible_distribution}}-{{ansible_distribution_version}}.cfg.php dest=/var/www/html/kickstart.cfg.php owner=root group=root mode=0644
   tags: kickstart
+
+- name: Upload initial authorized_keys to web server
+  template: src=files/kickstart_authorized_keys dest=/var/www/html/kickstart_authorized_keys owner=root group=root mode=0644
+  tags: kickstart
+
+
