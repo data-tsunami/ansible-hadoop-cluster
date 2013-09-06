@@ -1,8 +1,9 @@
-# Server needed to install & manage the cluster, but doesn't run Hadoop
+#
+# infrastructure: server needed to install & manage the cluster, but doesn't run Hadoop
+#  - nfs
+#  - web server (for KickStart) [optional]
 [infrastructure]
-nfs.my.domain
-web.my.domain
-proxy.my.domain
+infrastructure.my.domain
 
 # NameNode
 [namenode]
