@@ -102,6 +102,32 @@ The `site-infrastructure.yml` playbook does:
 
     $ ansible -i hosts nodes -m command -a "sudo du -hsx /srv/hadoop"
 
+
+## Some files you will need to have on files/ directory
+
+To install the _JDK_:
+
+ - `jdk-6u31-linux-amd64.rpm`
+ - `sun-javadb-client-10.6.2-1.1.i386.rpm`
+ - `sun-javadb-common-10.6.2-1.1.i386.rpm`
+ - `sun-javadb-core-10.6.2-1.1.i386.rpm`
+ - `sun-javadb-demo-10.6.2-1.1.i386.rpm`
+ - `sun-javadb-docs-10.6.2-1.1.i386.rpm`
+ - `sun-javadb-javadoc-10.6.2-1.1.i386.rpm`
+
+To install Hadoop 1.2.1:
+
+ - `hadoop-1.2.1-bin.tar.gz`
+
+To install extra YUM repositories:
+
+ - `cloudera-cdh-4-0.x86_64.rpm`
+ - `epel-release-6-8.noarch.rpm`
+
+(Optional) if you use KickStart & infrastructure playbooks:
+
+ - `kickstart_authorized_keys`
+
 # License
 
 Copyright (C) 2012 - Horacio Guillermo de Oro <hgdeoro@gmail.com>
