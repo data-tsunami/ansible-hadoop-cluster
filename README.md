@@ -119,11 +119,6 @@ To install Hadoop 1.2.1:
 
  - `hadoop-1.2.1-bin.tar.gz`
 
-To install extra YUM repositories:
-
- - `cloudera-cdh-4-0.x86_64.rpm`
- - `epel-release-6-8.noarch.rpm`
-
 (Optional) if you use KickStart & infrastructure playbooks:
 
  - `kickstart_authorized_keys`

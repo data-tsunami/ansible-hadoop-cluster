@@ -27,18 +27,15 @@
      - "sun-javadb-docs-10.6.2-1.1.i386.rpm"
      - "sun-javadb-javadoc-10.6.2-1.1.i386.rpm"
      - "jdk-6u31-linux-amd64.rpm"
-     - "epel-release-6-8.noarch.rpm"
-     - "cloudera-cdh-4-0.x86_64.rpm"
      - "{{ hadoop_tgz }}"
   tags: upload
 
 - name: Register EPEL repository
-  yum: name="/tmp/epel-release-6-8.noarch.rpm" state=present
+  yum: name="https://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm" state=present
   tags: yum
 
 - name: Register Cloudera repository
-  # http://archive.cloudera.com/cdh4/one-click-install/redhat/6/x86_64/cloudera-cdh-4-0.x86_64.rpm
-  yum: name="/tmp/cloudera-cdh-4-0.x86_64.rpm" state=present
+  yum: name="http://archive.cloudera.com/cdh4/one-click-install/redhat/6/x86_64/cloudera-cdh-4-0.x86_64.rpm" state=present
   tags: yum
 
 - name: Install basic packages
@@ -59,6 +56,10 @@
 #  # sudo yum groupinstall base
 #  when: "{{ lookup('env','INSTALL_BASE_GROUP') }} == '1'"
 #  tags: yum
+
+- name: Install snappy
+  yum: name=http://pkgs.repoforge.org/snappy/snappy-1.0.5-1.el6.rf.x86_64.rpm state=installed
+  tags: yum
 
 - name: Setup proxy via env variables
   template: src=etc--profile.d--proxy.sh dest=/etc/profile.d/proxy.sh
