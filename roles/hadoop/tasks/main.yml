@@ -29,6 +29,9 @@
   with_items:
      - libsnappy.so.1
      - libsnappy.so.1.1.3
+     - liblzo2.so
+     - liblzo2.so.2
+     - liblzo2.so.2.0.0
   tags: hadoop
 
 - name: Link Snappy libs to Hadoop native libs directory (extra)
