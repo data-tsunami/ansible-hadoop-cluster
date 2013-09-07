@@ -23,6 +23,19 @@
   command: tar xzf /tmp/{{ hadoop_tgz }} -C /home/hadoop creates=/home/hadoop/{{hadoop_unzip_dir}}
   tags: hadoop
 
+- name: Link Snappy libs to Hadoop native libs directory
+  command: ln -s /usr/lib64/{{item}} /home/hadoop/{{hadoop_unzip_dir}}/lib/native/Linux-amd64-64/{{item}}
+           creates=/home/hadoop/{{hadoop_unzip_dir}}/lib/native/Linux-amd64-64/{{item}}
+  with_items:
+     - libsnappy.so.1
+     - libsnappy.so.1.1.3
+  tags: hadoop
+
+- name: Link Snappy libs to Hadoop native libs directory (extra)
+  command: ln -s /usr/lib64/libsnappy.so.1.1.3 /home/hadoop/{{hadoop_unzip_dir}}/lib/native/Linux-amd64-64/libsnappy.so
+           creates=/home/hadoop/{{hadoop_unzip_dir}}/lib/native/Linux-amd64-64/libsnappy.so
+  tags: hadoop
+
 - name: Configure Hadoop
   template: src={{item}} dest=/home/hadoop/{{ hadoop_unzip_dir }}/conf/{{item}}
   sudo_user: hadoop
