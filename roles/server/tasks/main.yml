@@ -48,6 +48,8 @@
      - nfs-utils
      - portmap
      - wipe
+     - lzo
+     - lzo-devel
   tags: yum
 
 #- name: Install packages of Base group
