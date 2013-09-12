@@ -2,9 +2,6 @@
 # URL of the http proxy
 proxy: http://proxy.my.domain:3128
 
-# Base url to use to download various resources
-webserver_uri: http://www.my.domain/public
-
 # IP / hostname of the NFS server
 nfs_server: nfs.my.domain
 
@@ -16,6 +13,11 @@ nfs_export_network: 192.168.122.0/24
 
 # YUM/RPM mirror to use
 yum_mirror: http://centos.xfree.com.ar/6.4
+
+#----------------------------------------------------------------------
+# Hadoop configuration
+#----------------------------------------------------------------------
+# These variables are used to install & configure Hadoop
 
 # IP / hostname of the Hadoop NameNode
 hadoop_namenode: nn.my.domain
