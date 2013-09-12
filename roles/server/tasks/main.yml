@@ -76,6 +76,7 @@
 
 - name: Setup ssh authorized_key
   # FIXME: remove 'horacio' and replace for 'ks_username', or better: 'custom_username'
+  # Easyly fixable with Ansible 1.3 - http://www.ansibleworks.com/docs/playbooks2.html#local-facts-facts-d
   authorized_key: user="{{item}}" key="{{lookup('file', 'local/authorized_key.txt' )}}"
   with_items:
      - root
@@ -85,6 +86,7 @@
 
 - name: Setup ssh keys
   # FIXME: remove 'horacio' and replace for 'ks_username', or better: 'custom_username'
+  # Easyly fixable with Ansible 1.3 - http://www.ansibleworks.com/docs/playbooks2.html#local-facts-facts-d
   copy: src=local/{{item.f}} dest={{item.h}}/.ssh/{{item.f}} owner={{item.u}} group={{item.u}} mode=0600
   with_items:
     - { u: 'root',    h: '/root',         f: 'id_rsa' }
