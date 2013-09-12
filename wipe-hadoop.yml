@@ -3,6 +3,7 @@
   hosts: slaves
   sudo: true
   vars_files:
+    - general.yml
     - local.yml
   tasks:
     - name: Fill disks with zeros

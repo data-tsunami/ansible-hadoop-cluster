@@ -5,6 +5,7 @@
   sudo_user: hadoop
   gather_facts: no
   vars_files:
+    - general.yml
     - local.yml
   tasks:
     - name: Launch Hadoop DFS daemons from namenode
@@ -16,6 +17,7 @@
   sudo_user: hadoop
   gather_facts: no
   vars_files:
+    - general.yml
     - local.yml
   tasks:
     - name: Launch Hadoop JobTracker daemons from jobtracker

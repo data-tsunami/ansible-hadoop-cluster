@@ -4,6 +4,7 @@
   sudo: true
   sudo_user: hadoop
   vars_files:
+    - general.yml
     - local.yml
   tasks:
     - name: Run 'hadoop fs -ls /'

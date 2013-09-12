@@ -4,6 +4,7 @@
   sudo: true
   gather_facts: no
   vars_files:
+    - general.yml
     - local.yml
   tasks:
     - command: halt
@@ -13,6 +14,7 @@
   sudo: true
   gather_facts: no
   vars_files:
+    - general.yml
     - local.yml
   tasks:
     - command: halt

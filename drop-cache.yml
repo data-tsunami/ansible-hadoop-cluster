@@ -4,6 +4,7 @@
   gather_facts: no
   sudo: true
   vars_files:
+    - general.yml
     - local.yml
   tasks:
     - command: echo -n 3 > /proc/sys/vm/drop_caches
