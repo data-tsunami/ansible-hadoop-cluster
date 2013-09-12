@@ -45,7 +45,10 @@ The `site-infrastructure.yml` playbook does:
 ### TODO
 
 - FIX: easier install of Hadoop: download binary from mirror if not exists in files/
-- FIX: make NFS optional
+- Make NFS optional
+- Make proxy server optional
+- Install proxy server on infrastructure server
+- Setup /etc/hosts to avoid the need of a DNS server
 - Setup init scripts for Hadoop
 - Initial setup of ssh keys and sudo? (don't know if possible, since it's required for Ansible)
 
