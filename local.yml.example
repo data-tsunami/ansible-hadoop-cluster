@@ -8,16 +8,24 @@ nfs_server: nfs.my.domain
 # Directory exported in the NFS server
 nfs_export: /srv/nfs
 
-# network + netmask allowed to use the exported directory
-nfs_export_network: 192.168.122.0/24
-
 # YUM/RPM mirror to use
 yum_mirror: http://centos.xfree.com.ar/6.4
+
+#----------------------------------------------------------------------
+# Infrastructure
+#----------------------------------------------------------------------
+# These variables are used if you setup the 'infrastructure' server with the 'site-infrastructure.yml' playbook
+
+# network + netmask allowed to use the exported directory
+nfs_export_network: 192.168.122.0/24
 
 #----------------------------------------------------------------------
 # Hadoop configuration
 #----------------------------------------------------------------------
 # These variables are used to install & configure Hadoop
+
+# If this variable is defined, the script won't install OpenJdk. Will install Oracle/Sun JDK 6u31 (requires some files in files/ directory)
+#use_custom_jdk6: 1
 
 # IP / hostname of the Hadoop NameNode
 hadoop_namenode: nn.my.domain
