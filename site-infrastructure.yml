@@ -3,6 +3,7 @@
   sudo: true
   vars_files:
     - local.yml
+    - general.yml
   roles:
     - server
     - infrastructure

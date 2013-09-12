@@ -1,0 +1,59 @@
+---
+#
+# If the variable 'use_custom_jdk6' is defined, upload and install JDK6u31 from the files/ directory,
+# else: install the distribution's version of OpenJdk
+#
+
+## Install from RPMs
+
+- name: Copy RPMs
+  copy: src=files/{{item}} dest=/tmp/{{item}} owner=root group=root mode=0644 force=no
+  with_items:
+     - "sun-javadb-common-10.6.2-1.1.i386.rpm"
+     - "sun-javadb-client-10.6.2-1.1.i386.rpm"
+     - "sun-javadb-core-10.6.2-1.1.i386.rpm"
+     - "sun-javadb-demo-10.6.2-1.1.i386.rpm"
+     - "sun-javadb-docs-10.6.2-1.1.i386.rpm"
+     - "sun-javadb-javadoc-10.6.2-1.1.i386.rpm"
+     - "jdk-6u31-linux-amd64.rpm"
+  when: use_custom_jdk6 is defined
+  ignore_errors: True
+  tags: jdk
+
+- name: Install Oracle/Sun JDK from copied RPMs
+  yum: name="{{item}}" state=present
+  with_items:
+     - "/tmp/sun-javadb-common-10.6.2-1.1.i386.rpm"
+     - "/tmp/sun-javadb-client-10.6.2-1.1.i386.rpm"
+     - "/tmp/sun-javadb-core-10.6.2-1.1.i386.rpm"
+     - "/tmp/sun-javadb-demo-10.6.2-1.1.i386.rpm"
+     - "/tmp/sun-javadb-docs-10.6.2-1.1.i386.rpm"
+     - "/tmp/sun-javadb-javadoc-10.6.2-1.1.i386.rpm"
+     - "/tmp/jdk-6u31-linux-amd64.rpm"
+  when: use_custom_jdk6 is defined
+  tags: jdk
+
+## Install from JDK
+
+- name: Install OpenJDK with YUM
+  yum: name="{{item}}" state=present
+  with_items:
+     - "{{openjdk_package}}"
+  when: use_custom_jdk6 is not defined
+  tags: jdk
+
+## General
+#
+#- name: Create facts directory
+#  file: path=/etc/ansible/facts.d state=directory
+#  tags: jdk
+#
+#- name: Setup facts in server about java version
+#  ini_file: dest=/etc/ansible/facts.d/preferences.fact section=java option=java_home value=/usr/java/jdk1.6.0_31
+#  when: use_custom_jdk6 is defined
+#  tags: jdk
+#
+#- name: Setup facts in server about java version
+#  ini_file: dest=/etc/ansible/facts.d/preferences.fact section=java option=java_home value=/usr/lib/jvm/java-1.6.0-openjdk-1.6.0.0.x86_64/jre
+#  when: use_custom_jdk6 is not defined
+#  tags: jdk

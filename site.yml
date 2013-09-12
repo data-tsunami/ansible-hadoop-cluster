@@ -4,8 +4,10 @@
   sudo: true
   vars_files:
     - local.yml
+    - general.yml
   roles:
     - server
+    - java
     - hadoop
 
 - name: Setup Hadoop namenode
@@ -13,6 +15,8 @@
   sudo: true
   vars_files:
     - local.yml
+    - general.yml
   roles:
     - server
+    - java
     - namenode

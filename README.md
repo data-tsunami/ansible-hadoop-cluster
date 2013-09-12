@@ -17,7 +17,7 @@ The `site.yml` playbook starts with a just installed CentOS 6.4 (you need ssh ac
 To make this work, you must have:
 
  - a NFS server: you can setup the NFS server, and export a share as read-write, or see `site-infrastructure.yml`
- - Sun/Oracle JDK 1.6u31 64bits + Hadoop binaries in the ./files/ directory (see ./files/README.txt)
+ - Hadoop binaries in the ./files/ directory (see ./files/README.txt)
  - your hosts defined in `hosts` file (see `hosts.example` as reference)
  - your settings customized in `local.yml` file (see `local.yml.example` as reference)
 
@@ -108,7 +108,11 @@ The `site-infrastructure.yml` playbook does:
 
 ## Some files you will need to have on files/ directory
 
-To install the _JDK_:
+To install Hadoop 1.2.1:
+
+ - `hadoop-1.2.1-bin.tar.gz`
+
+(Optional) By defalut, OpenJdk6 is installed. To install the recommended _JDK_ (Oracle/Sun 6u31), you will need some files in the files/ directory:
 
  - `jdk-6u31-linux-amd64.rpm`
  - `sun-javadb-client-10.6.2-1.1.i386.rpm`
@@ -118,11 +122,7 @@ To install the _JDK_:
  - `sun-javadb-docs-10.6.2-1.1.i386.rpm`
  - `sun-javadb-javadoc-10.6.2-1.1.i386.rpm`
 
-To install Hadoop 1.2.1:
-
- - `hadoop-1.2.1-bin.tar.gz`
-
-(Optional) if you use KickStart & infrastructure playbooks:
+(Optional) If you use KickStart & infrastructure playbooks (to quickly deploy many virtual servers):
 
  - `kickstart_authorized_keys`
 
