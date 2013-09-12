@@ -44,7 +44,6 @@ The `site-infrastructure.yml` playbook does:
 
 ### TODO
 
-- FIX: easier install of Hadoop: download binary from mirror if not exists in files/
 - Make NFS optional
 - Make proxy server optional
 - Install proxy server on infrastructure server
