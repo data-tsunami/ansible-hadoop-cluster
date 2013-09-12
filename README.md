@@ -106,13 +106,13 @@ The `site-infrastructure.yml` playbook does:
     $ ansible -i hosts nodes -m command -a "sudo du -hsx /srv/hadoop"
 
 
-## Some files you will need to have on files/ directory
+## Some files you may have on files/ directory
 
-To install Hadoop 1.2.1:
+(Optional) To install Hadoop 1.2.1:
 
  - `hadoop-1.2.1-bin.tar.gz`
 
-(Optional) By defalut, OpenJdk6 is installed. To install the recommended _JDK_ (Oracle/Sun 6u31), you will need some files in the files/ directory:
+(Optional) By defalut, OpenJdk6 is installed. To install the recommended _JDK_ (Oracle/Sun 6u31), you will need to define `use_custom_jdk6` in `local.yml` and put some files in the files/ directory:
 
  - `jdk-6u31-linux-amd64.rpm`
  - `sun-javadb-client-10.6.2-1.1.i386.rpm`

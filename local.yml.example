@@ -36,14 +36,15 @@ hadoop_secondarynamenode: secnn.my.domain
 # IP / hostname of the Hadoop Job Tracker
 hadoop_jobtracker: jt.my.domain
 
+# Url from where to download Hadoop. If not defined, uses the US server.
+# You can define here the url from a mirror. For example, for Argentina:
+#hadoop_download_url: http://mirrors.dcarsat.com.ar/apache/hadoop/common/hadoop-1.2.1/hadoop-1.2.1-bin.tar.gz
+
 # Hadoop version - used to create the directory for logs: /srv/nfs/hadoop-{{hadoop_version}}-logs
-hadoop_version: 1.2.0
+hadoop_version: 1.2.1
 
-# Hadoop binaries
-hadoop_tgz: hadoop-1.2.0-bin.tar.gz
-
-# The directory created when unzipping the 'hadoop_tgz'
-hadoop_unzip_dir: hadoop-1.2.0 # name of the directory created when unziping 'hadoop_tgz'
+# The directory created when unzipping the Hadoop tgz
+hadoop_unzip_dir: hadoop-1.2.1
 
 #----------------------------------------------------------------------
 # Kickstart configuration - Not needed if you don't use KickStart

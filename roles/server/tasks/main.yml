@@ -16,11 +16,11 @@
   template: src={{ansible_distribution}}-{{ansible_distribution_version}}--CentOS-Base.repo dest=/etc/yum.repos.d/CentOS-Base.repo
   tags: yum
 
-- name: Copy installers
-  copy: src=files/{{item}} dest=/tmp/{{item}} owner=root group=root mode=0644 force=no
-  with_items:
-    - "{{ hadoop_tgz }}"
-  tags: upload
+#- name: Copy installers
+#  copy: src=files/{{item}} dest=/tmp/{{item}} owner=root group=root mode=0644 force=no
+#  with_items:
+#    - "{{ hadoop_tgz }}"
+#  tags: upload
 
 - name: Register EPEL repository
   yum: name="https://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm" state=present

@@ -18,9 +18,17 @@
   with_items:
      - /srv/nfs/hadoop-{{hadoop_version}}-logs
 
+- name: Download Hadoop
+  sudo_user: hadoop
+  get_url: url={{hadoop_download_url}} dest=/home/hadoop/hadoop-bin.tgz # Ansible 1.3 -> sha256sum={{hadoop_download_sha256}}
+  environment:
+    http_proxy: "{{proxy}}"
+    https_proxy: "{{proxy}}"
+  tags: hadoop
+
 - name: Unzip Hadoop
   sudo_user: hadoop
-  command: tar xzf /tmp/{{ hadoop_tgz }} -C /home/hadoop creates=/home/hadoop/{{hadoop_unzip_dir}}
+  command: tar xzf /home/hadoop/hadoop-bin.tgz -C /home/hadoop creates=/home/hadoop/{{hadoop_unzip_dir}}
   tags: hadoop
 
 - name: Link Snappy libs to Hadoop native libs directory
