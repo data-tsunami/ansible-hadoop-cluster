@@ -2,8 +2,8 @@
   hosts: infrastructure
   sudo: true
   vars_files:
-    - local.yml
     - general.yml
+    - local.yml
   roles:
     - server
     - infrastructure
