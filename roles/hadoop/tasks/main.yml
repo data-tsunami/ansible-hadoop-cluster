@@ -56,7 +56,9 @@
      - core-site.xml
      - masters # this file contains the name or IP of the secondary name node
      - slaves  # this file contains the names or IPs of the slaves nodes
-  tags: hadoop
+  tags:
+     - hadoop
+     - hadoopconf
 
 - name: Configure Hadoop environment
   sudo_user: hadoop
@@ -66,7 +68,9 @@
      - { re: 'export HADOOP_SSH_OPTS=', line: 'export HADOOP_SSH_OPTS=\"-o ConnectTimeout=5 -o SendEnv=HADOOP_CONF_DIR -o StrictHostKeyChecking=no\"' }
      - { re: 'export HADOOP_LOG_DIR=',  line: 'export HADOOP_LOG_DIR=/srv/nfs/hadoop-{{hadoop_version}}-logs' }
      #-{ re: 'export JAVA_HOME=',       line: 'export JAVA_HOME={{  }}' }
-  tags: hadoop
+  tags:
+     - hadoop
+     - hadoopconf
 
 - name: Configure JAVA_HOME for OpenJdk
   # TODO: this is too repetitive and error prone!
@@ -75,7 +79,9 @@
   with_items:
      - { re: 'export JAVA_HOME=',       line: 'export JAVA_HOME={{openjdk_java_home}}' }
   when: use_custom_jdk6 is not defined
-  tags: hadoop
+  tags:
+     - hadoop
+     - hadoopconf
 
 - name: Configure JAVA_HOME for custom JRE
   # TODO: this is too repetitive and error prone!
@@ -84,4 +90,6 @@
   with_items:
      - { re: 'export JAVA_HOME=',       line: 'export JAVA_HOME={{custom_jdk_java_home}}' }
   when: use_custom_jdk6 is defined
-  tags: hadoop
+  tags:
+     - hadoop
+     - hadoopconf
