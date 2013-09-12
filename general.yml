@@ -7,3 +7,5 @@ openjdk_java_home: /usr/lib/jvm/java-1.6.0-openjdk-1.6.0.0.x86_64/jre
 custom_jdk_java_home: /usr/java/jdk1.6.0_31
 hadoop_download_url: http://www.us.apache.org/dist/hadoop/common/hadoop-1.2.1/hadoop-1.2.1-bin.tar.gz
 hadoop_download_sha256: 39B8C56DCDF88EFB46486E0A1CB47426D5684D5C31E55949A8495D3E191FB2DC
+hadoop_version: 1.2.1
+hadoop_unzip_dir: hadoop-1.2.1

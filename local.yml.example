@@ -41,10 +41,12 @@ hadoop_jobtracker: jt.my.domain
 #hadoop_download_url: http://mirrors.dcarsat.com.ar/apache/hadoop/common/hadoop-1.2.1/hadoop-1.2.1-bin.tar.gz
 
 # Hadoop version - used to create the directory for logs: /srv/nfs/hadoop-{{hadoop_version}}-logs
-hadoop_version: 1.2.1
+# The default value is defined in general.yml. You can overide the value here.
+#hadoop_version: 1.2.1
 
 # The directory created when unzipping the Hadoop tgz
-hadoop_unzip_dir: hadoop-1.2.1
+# The default value is defined in general.yml. You can overide the value here.
+#hadoop_unzip_dir: hadoop-1.2.1
 
 #----------------------------------------------------------------------
 # Kickstart configuration - Not needed if you don't use KickStart
