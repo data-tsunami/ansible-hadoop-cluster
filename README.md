@@ -1,7 +1,7 @@
 Ansible playbook for my Hadoop cluster
 --------------------------------------
 
-Setup a Hadoop cluster on CentOS 6.4 servers.
+Setup a Hadoop 1.2.1 cluster on CentOS 6.4 servers.
 
 ### Playbooks
 
@@ -45,7 +45,6 @@ The `site-infrastructure.yml` playbook does:
 ### TODO
 
 - Make NFS optional
-- Make proxy server optional
 - Install proxy server on infrastructure server
 - Setup /etc/hosts to avoid the need of a DNS server
 - Setup init scripts for Hadoop

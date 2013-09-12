@@ -18,12 +18,20 @@
   with_items:
      - /srv/nfs/hadoop-{{hadoop_version}}-logs
 
-- name: Download Hadoop
+- name: Download Hadoop (using proxy)
   sudo_user: hadoop
   get_url: url={{hadoop_download_url}} dest=/home/hadoop/hadoop-bin.tgz # Ansible 1.3 -> sha256sum={{hadoop_download_sha256}}
   environment:
     http_proxy: "{{proxy}}"
     https_proxy: "{{proxy}}"
+  when: proxy is defined
+  tags: hadoop
+
+- name: Download Hadoop (without proxy)
+  # FIXME: this is almos equals to the 'with proxy' version!
+  sudo_user: hadoop
+  get_url: url={{hadoop_download_url}} dest=/home/hadoop/hadoop-bin.tgz # Ansible 1.3 -> sha256sum={{hadoop_download_sha256}}
+  when: proxy is not defined
   tags: hadoop
 
 - name: Unzip Hadoop

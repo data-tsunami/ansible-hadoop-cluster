@@ -1,6 +1,6 @@
 ---
-# URL of the http proxy
-proxy: http://proxy.my.domain:3128
+# URL of the http proxy (optional)
+#proxy: http://proxy.my.domain:3128
 
 # IP / hostname of the NFS server
 nfs_server: nfs.my.domain
@@ -8,8 +8,8 @@ nfs_server: nfs.my.domain
 # Directory exported in the NFS server
 nfs_export: /srv/nfs
 
-# YUM/RPM mirror to use
-yum_mirror: http://centos.xfree.com.ar/6.4
+# YUM/RPM mirror to use (optional)
+#yum_mirror: http://centos.xfree.com.ar/6.4
 
 #----------------------------------------------------------------------
 # Infrastructure
