@@ -1,0 +1,3 @@
+openjdk_package: java-1.6.0-openjdk
+openjdk_java_home: /usr/lib/jvm/java-1.6.0-openjdk-1.6.0.0.x86_64/jre
+custom_jdk_java_home: /usr/java/jdk1.6.0_31
