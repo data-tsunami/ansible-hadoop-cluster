@@ -45,6 +45,7 @@
      - wipe
      - lzo
      - lzo-devel
+     - dstat
   tags: yum
 
 #- name: Install packages of Base group
@@ -75,9 +76,11 @@
 
 - name: Create Hadoop group
   group: name=hadoop gid=599 state=present
+  tags: hadoop
 
 - name: Create Hadoop user
   user: name=hadoop comment="User for Hadoop services" uid=599 group=hadoop state=present
+  tags: hadoop
 
 - name: Setup ssh authorized_key
   # FIXME: remove 'horacio' and replace for 'ks_username', or better: 'custom_username'
