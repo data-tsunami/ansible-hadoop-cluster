@@ -9,3 +9,5 @@
     - name: Delete /srv/hadoop
       file: path=/srv/hadoop state=absent
       tags: rm-rf
+    - name: Next step
+      debug: msg="Now you should run 'ansible-playbook -i hosts -v site.yml -t hadoop'"
