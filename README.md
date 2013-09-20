@@ -125,6 +125,10 @@ The `hadoopconf` allows to quickly reconfigure Hadoop:
 
  - `kickstart_authorized_keys`
 
+# Other Open Source related and similar projects
+
+- https://github.com/analytically/hadoop-ansible (based on Ubuntu and Cloudera packages)
+
 # License
 
 Copyright (C) 2012 - Horacio Guillermo de Oro <hgdeoro@gmail.com>
